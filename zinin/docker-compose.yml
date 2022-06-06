@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+
+
+  web:
+    container_name: web
+    build:
+      context: ./sourse
+      dockerfile: Dockerfile
+    restart: always
+
+    volumes:
+      - ./sourse/:/sourse
+    expose:
+      - "8000"
+    depends_on:
+      - mongo
+    environment:
+      MONGO_HOST: mongo
+      MONGO_PORT: 27018
+      MONGO_DB: documents
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    command: mongod --port 27018
+    restart: always
+    ports:
+      - '27018:27018'
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    build: ./nginx
+    restart: always
+    depends_on:
+      - web
+    ports:
+      - "8000:8000"

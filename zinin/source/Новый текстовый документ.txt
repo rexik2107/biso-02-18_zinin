@@ -1,0 +1,8 @@
+app.py - основной файл, генерятся рауты post get delelte, подтягиваются модули, поднимается web
+utils.py - классы и функции для middlewares
+messages.py - обработка SendMessage (post)
+database.py - работа с бд
+commands.py -сюда добавляются роуты, вызывая класс и добавляясь в список
+middlewares - сюда приходят, уходят запросы, серилезуются и т.д
+chats.py - обработка getchat (get)
+
